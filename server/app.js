@@ -11,6 +11,11 @@ app.use(express.json());
  *     Response (Text): "1.0.0"
  */
 // Your code here
+app.get("/version", (req, res) => {
+    res.status(200)
+    res.send('1.0.0')
+    res.end()
+})
 
 /**
  *  Basic Phase 2 - Route param and JSON response
@@ -29,6 +34,19 @@ app.use(express.json());
  *  combined with the id sent as a route parameter in the url
  */
 // Your code here
+app.get('/viewers/:id', (req, res) => {
+    const id = req.params.id;
+    const user = {
+        id: id,
+        firstName: 'Adel',
+        lastName: 'AlQosi',
+        birthDate: '03/01/1994',
+        favoriteMovies: ['Harry Potter', 'Fight Club']
+    }
+    res.status(200)
+    res.json(user)
+    res.end()
+})
 
 /** Basic Phase 3 - Query params in URL
  *      Method: GET
@@ -48,6 +66,15 @@ app.use(express.json());
  *          message required
  */
 // Your code here
+app.get('/info', (req, res) => {
+    const message = req.query.message
+    
+    if (message === '' || message === undefined) {
+        res.send('message required')
+    } else {
+        res.send(message)
+    }
+})
 
 /**
  *  IMPORTANT: Scroll to the top for basic phases.
